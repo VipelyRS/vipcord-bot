@@ -7,8 +7,16 @@ const command = require('./command')
 client.on('ready', () => {
     console.log('The Client is Ready!')
 
-    command(client, 'ping', (message) => {
-        message.channel.send(`Pong!`)
+    command(client, help, (message) => {
+        message.channel.send(`
+        Available Commands:
+
+        **v!help** - Displays the help menu
+        **v!purge** - Clears all messages in a channel (only available to admins)
+        *aliases: v!p*
+        **v!version** - Shows the bot version number
+        *aliases: v!v*
+        `)
     })
 
     command(client, ['purge', 'p'], message => {
@@ -20,7 +28,7 @@ client.on('ready', () => {
     })
 
     command(client, ['version', 'v'], (message) => {
-        message.channel.send(`**Bot Version Number**: Alpha 1.5.0`)
+        message.channel.send(`**Bot Version Number**: Alpha 1.6.0`)
     })
 })
 
