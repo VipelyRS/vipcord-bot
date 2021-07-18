@@ -51,6 +51,8 @@ client.on('ready', () => {
                     value: memberCount
                 }
             )
+
+            message.channel.send(embed)
     })
 
     command(client, ['version', 'v'], (message) => {
