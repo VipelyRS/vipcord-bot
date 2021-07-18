@@ -7,7 +7,7 @@ const command = require('./command')
 client.on('ready', () => {
     console.log('The Client is Ready!')
 
-    command(client, help, (message) => {
+    command(client, 'help', (message) => {
         message.channel.send(`
         Available Commands:
 
