@@ -20,7 +20,7 @@ client.on('ready', () => {
     })
 
     command(client, ['version', 'v'], (message) => {
-        message.channel.send(`**Bot Version Number** Alpha 1.5.0`)
+        message.channel.send(`**Bot Version Number**: Alpha 1.5.0`)
     })
 })
 
