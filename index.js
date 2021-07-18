@@ -18,6 +18,10 @@ client.on('ready', () => {
             })
         }
     })
+
+    command(client, ['version', 'v'], (message) => {
+        message.channel.send(`Alpha 1.5.0`)
+    })
 })
 
 client.login(process.env.DiscordJS_Token)
