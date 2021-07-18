@@ -14,7 +14,7 @@ client.on('ready', () => {
     command(client, ['purge', 'p'], message => {
         if (message.member.hasPermission('ADMINISTRATOR')) {
             message.channel.messages.fetch().then((results) => {
-                console.log(results)
+                message.channel.bulkDelete(results)
             })
         }
     })
