@@ -10,6 +10,14 @@ client.on('ready', () => {
     command(client, 'ping', (message) => {
         message.channel.send(`Pong!`)
     })
+
+    command(client, ['purge', 'p'], message => {
+        if (message.member.hasPermission('ADMINISTRATOR')) {
+            message.channel.messages.fetch().then((results) => {
+                console.log(results)
+            })
+        }
+    })
 })
 
 client.login(process.env.DiscordJS_Token)
