@@ -48,7 +48,7 @@ client.on('ready', () => {
                 },
                 {
                     name: 'Members',
-                    value: memberCount,
+                    value: memberCount
                 }
             )
     })
