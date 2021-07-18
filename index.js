@@ -14,6 +14,7 @@ client.on('ready', () => {
         **v!help** - Displays the help menu
         **v!purge** - Clears all messages in a channel (only available to admins)
         *aliases: v!p*
+        **v!serverinfo** - Displays info about the current server
         **v!version** - Shows the bot version number
         *aliases: v!v*
         `)
@@ -25,6 +26,31 @@ client.on('ready', () => {
                 message.channel.bulkDelete(results)
             })
         }
+    })
+
+    command(client, 'serverinfo', message => {
+        const { guild } = message
+
+        const { name, region, memberCount, owner } = guild
+        const icon = guild.iconURL()
+
+        const embed = new Discord.MessageEmbed()
+            .setTitle(`Server Info for "${name}"`)
+            .setThumbnail(icon)
+            .addFields(
+                {
+                    name: 'Owner',
+                    value: owner.user.tag,
+                },
+                {
+                    name: 'Region',
+                    value: region,
+                },
+                {
+                    name: 'Members',
+                    value: memberCount,
+                }
+            )
     })
 
     command(client, ['version', 'v'], (message) => {
