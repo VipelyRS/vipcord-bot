@@ -77,7 +77,7 @@ module.exports = (client, commandOptions) => {
         const { member, content, guild } = message
 
         for (const alias of commands) {
-            if (content.toLowerCase().startsWith(`${prefix}${alias.toLowerCase}`)) {
+            if (content.toLowerCase().startsWith(`${prefix}${alias.toLowerCase()}`)) {
 
                 for (const permission of permissions) {
                     if (!member.hasPermission(permission)) {
@@ -91,7 +91,7 @@ module.exports = (client, commandOptions) => {
                         role.name === requiredRole)
 
                         if (!role || member.role.cache.has(role.id)) {
-                            message.reply(`You must have the "${requiredRole}" to use this command`)
+                            message.reply(`You must have the "${requiredRole}" role to use this command`)
                             return
                         }
                     }

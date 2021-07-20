@@ -16,5 +16,5 @@ module.exports = {
 **${prefix}version** - Shows the bot version number
 *aliases: ${prefix}v*
         `)
-    }
+    },
 }
