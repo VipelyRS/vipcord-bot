@@ -13,12 +13,35 @@ client.on('ready', () => {
         Available Commands:
 
 **${prefix}help** - Displays the help menu
-**${prefix}purge** - Clears all messages in a channel (only available to admins)
+**${prefix}kick <user>** - Kicks a targeted user
+**${prefix}ban <user>** - Bans a targeted user
+**${prefix}purge** - Clears all messages in a channel (Admin Perm Needed)
 **${prefix}prefix** - Changes the bot prefix
+**${prefix}servers** - Shows all the servers the bot is in
 **${prefix}serverinfo** - Displays info about the current server
 **${prefix}version** - Shows the bot version number
 *aliases: ${prefix}v*
         `)
+    })
+
+    command(client, 'ban', message => {
+        const { member, mentions } = message
+
+        const tag = `<@${member.id}>`
+
+        if(member.hasPermission('BAN_MEMBERS') || member.hasPermission('ADMINISTRATOR')) {
+            const target = mentions.users.first()
+            if (target) {
+                const targetMember = message.guild.members.cache.get(target.id)
+                targetMember.ban()
+                message.channel.send(`${tag} That user has been banned.`)
+            } else {
+                message.channel.send(`${tag} No vaild user mentioned.`)
+            }
+
+        } else {
+            message.channel.send(`${tag} You do not have the required permission to use this command.`)
+        }
     })
 
     command(client, 'purge', message => {
@@ -28,6 +51,13 @@ client.on('ready', () => {
             })
         }
     })
+
+    command(client, 'servers', message => {
+        client.guilds.cache.forEach((guilds) => {
+            message.channel.send(`${guild.name} has a total of ${guilds.memberCount} members`)
+        })
+    })
+
 
     command(client, 'serverinfo', message => {
         const { guild } = message
