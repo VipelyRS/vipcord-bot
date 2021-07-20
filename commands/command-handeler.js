@@ -107,7 +107,7 @@ module.exports = (client, commandOptions) => {
                     return
                 }
 
-                callback(message, arguments, arguments.join(' '))
+                callback(client, message, arguments, arguments.join(' '))
 
                 return
             }
