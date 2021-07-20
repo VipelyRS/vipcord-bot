@@ -7,8 +7,8 @@ module.exports = {
         Available Commands:
 
 **${prefix}help** - Displays the help menu
-**${prefix}kick <user>** - Kicks a targeted user
-**${prefix}ban <user>** - Bans a targeted user
+**${prefix}kick <@user>** - Kicks a targeted user
+**${prefix}ban <@user>** - Bans a targeted user
 **${prefix}purge** - Clears all messages in a channel
 **${prefix}prefix** - Changes the bot prefix
 **${prefix}servers** - Shows all the servers the bot is in
@@ -16,5 +16,5 @@ module.exports = {
 **${prefix}version** - Shows the bot version number
 *aliases: ${prefix}v*
         `)
-    }
+    },
 }
