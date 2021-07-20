@@ -16,5 +16,5 @@ module.exports = {
                 message.channel.send(`${tag} No vaild user mentioned.`)
             }
     },
-    permissions: ['KICK_MEMBERS', 'ADMINISTRATOR'],
+    permissions: ['KICK_MEMBERS', 'ADMINITRATOR'],
 }

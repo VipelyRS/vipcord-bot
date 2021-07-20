@@ -5,5 +5,5 @@ module.exports = {
     callback: (message, arguments, text) => {
         message.channel.bulkDelete()
     },
-    permissions: ['ADMINISTRATOR', 'MANAGE_MESSAGES'],
+    permissions: ['ADMINITRATOR', 'MANAGE_MESSAGES'],
 }
