@@ -20,7 +20,7 @@ client.on('ready', () => {
                 readCommands(path.join(dir, file))
             } else if (file !== baseFile) {
                 const option = require(path.join(__dirname, dir, file))
-                commandHandeler()
+                commandHandeler(client, option)
             }
         }
     }
