@@ -15,7 +15,7 @@ client.on('ready', () => {
 **${prefix}help** - Displays the help menu
 **${prefix}kick <user>** - Kicks a targeted user
 **${prefix}ban <user>** - Bans a targeted user
-**${prefix}purge** - Clears all messages in a channel (Admin Perm Needed)
+**${prefix}purge** - Clears all messages in a channel
 **${prefix}prefix** - Changes the bot prefix
 **${prefix}servers** - Shows all the servers the bot is in
 **${prefix}serverinfo** - Displays info about the current server
@@ -107,7 +107,7 @@ client.on('ready', () => {
     })
 
     command(client, ['version', 'v'], (message) => {
-        message.channel.send(`**Bot Version Number**: Alpha 1.6.0`)
+        message.channel.send(`**Bot Version Number**: Alpha 2.0.0`)
     })
 })
 
