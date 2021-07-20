@@ -34,13 +34,13 @@ client.on('ready', () => {
             if (target) {
                 const targetMember = message.guild.members.cache.get(target.id)
                 targetMember.ban()
-                message.channel.send(`${tag} That user has been banned.`)
+                message.channel.reply(`That user has been banned.`)
             } else {
-                message.channel.send(`${tag} No vaild user mentioned.`)
+                message.channel.reply(`No vaild user mentioned.`)
             }
 
         } else {
-            message.channel.send(`${tag} You do not have the required permission to use this command.`)
+            message.channel.reply(`You do not have the required permission to use this command.`)
         }
     })
 
