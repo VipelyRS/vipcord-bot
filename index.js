@@ -13,14 +13,15 @@ client.on('ready', () => {
 
         **v!help** - Displays the help menu
         **v!purge** - Clears all messages in a channel (only available to admins)
-        *aliases: v!p*
+        **prefix** - Changes the bot prefix
         **v!serverinfo** - Displays info about the current server
         **v!version** - Shows the bot version number
         *aliases: v!v*
+        ${prefix}
         `)
     })
 
-    command(client, ['purge', 'p'], message => {
+    command(client, 'purge', message => {
         if (message.member.hasPermission('ADMINISTRATOR')) {
             message.channel.messages.fetch().then((results) => {
                 message.channel.bulkDelete(results)
