@@ -47,16 +47,12 @@ const validatePermissions = (permissions) => {
     }
 }
 
-module.exports = (client, commandOptions) => {
+const allCommands = {}
+
+module.exports = (commandOptions) => {
     let {
         commands,
-        expectedArgs = '',
-        permissionError = 'You do not have the required permissions to access this command',
-        minArgs = 0,
-        maxArgs = null,
         permissions = [],
-        requiredRoles = [],
-        callback,
     } = commandOptions
 
     if (typeof commands === 'string') {
@@ -73,11 +69,38 @@ module.exports = (client, commandOptions) => {
         validatePermissions(permissions)
     }
 
-    client.on('message', message => {
-        const { member, content, guild } = message
+    for (const command of commands) {
+        allCommands[command] = {
+            ...commandOptions,
+            commands,
+            permissions
+        };
+    }
+}
 
-        for (const alias of commands) {
-            if (content.toLowerCase().startsWith(`${prefix}${alias.toLowerCase()}`)) {
+module.exports.listen = (client) => {
+    client.on('message', message => {
+        const { member, content, guild } = message;
+
+        const arguments = content.split(/[ ]+/);
+
+        const name = arguments.shift().toLowerCase();
+
+        if (name.startsWith(prefix)) {
+            const command = allCommands[name.replace(prifx, "")]
+            if (!command) {
+                return
+            }
+
+            const {
+                permissions,
+                permissionError = '',
+                requiredRoles = [],
+                minArgs = 0,
+                maxArgs = null,
+                expectedArgs,
+                callback,
+            } = command;
 
                 for (const permission of permissions) {
                     if (!member.hasPermission(permission)) {
@@ -96,10 +119,6 @@ module.exports = (client, commandOptions) => {
                         }
                     }
 
-                const arguments = content.split(/[ ]+/)
-
-                arguments.shift()
-
                 if (arguments.length < minArgs || (
                     maxArgs !== null && arguments.length > maxArgs
                 )) {
@@ -107,10 +126,7 @@ module.exports = (client, commandOptions) => {
                     return
                 }
 
-                callback(client, message, arguments, arguments.join(' '))
-
-                return
-            }
+                callback(message, arguments, arguments.join(' '))
         }
     })
 }

@@ -20,12 +20,14 @@ client.on('ready', async () => {
                 readCommands(path.join(dir, file))
             } else if (file !== baseFile) {
                 const option = require(path.join(__dirname, dir, file))
-                commandHandeler(client, option)
+                commandHandeler(option)
             }
         }
     }
 
     readCommands('commands')
+
+    commandHandeler.listen(client)
 })
 
 client.login(process.env.DiscordJS_Token)
