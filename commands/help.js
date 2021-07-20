@@ -1,3 +1,5 @@
+const { prefix } = require('./config.json')
+
 module.exports = {
     commands: 'help',
     minArgs: 0,
