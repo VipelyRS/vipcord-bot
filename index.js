@@ -24,6 +24,26 @@ client.on('ready', () => {
         `)
     })
 
+    command(client, 'kick', message => {
+        const { member, mentions } = message
+
+        const tag = `<@${member.id}>`
+
+        if(member.hasPermission('KICK_MEMBERS') || member.hasPermission('ADMINISTRATOR')) {
+            const target = mentions.users.first()
+            if (target) {
+                const targetMember = message.guild.members.cache.get(target.id)
+                targetMember.kick()
+                message.channel.send(`${tag} That user has been kicked.`)
+            } else {
+                message.channel.send(`${tag} No vaild user mentioned.`)
+            }
+
+        } else {
+            message.channel.send(`${tag} You do not have the required permission to use this command.`)
+        }
+    })
+
     command(client, 'ban', message => {
         const { member, mentions } = message
 
