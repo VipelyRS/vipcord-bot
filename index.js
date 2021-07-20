@@ -17,7 +17,6 @@ client.on('ready', () => {
         **v!serverinfo** - Displays info about the current server
         **v!version** - Shows the bot version number
         *aliases: v!v*
-        ${prefix}
         `)
     })
 
