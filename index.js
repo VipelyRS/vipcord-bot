@@ -2,6 +2,7 @@ const Discord = require('discord.js')
 const client = new Discord.Client()
 
 const config = require('./config.json')
+const { prefix, token } = require('./config.json')
 const command = require('./command')
 
 client.on('ready', () => {
@@ -11,12 +12,12 @@ client.on('ready', () => {
         message.channel.send(`
         Available Commands:
 
-        **v!help** - Displays the help menu
-        **v!purge** - Clears all messages in a channel (only available to admins)
-        **prefix** - Changes the bot prefix
-        **v!serverinfo** - Displays info about the current server
-        **v!version** - Shows the bot version number
-        *aliases: v!v*
+        **${prefix}help** - Displays the help menu
+        **${prefix}purge** - Clears all messages in a channel (only available to admins)
+        **${prefix}prefix** - Changes the bot prefix
+        **${prefix}serverinfo** - Displays info about the current server
+        **${prefix}version** - Shows the bot version number
+        *aliases: ${prefix}v*
         `)
     })
 
