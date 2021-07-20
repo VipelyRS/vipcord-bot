@@ -11,13 +11,13 @@ client.on('ready', () => {
     command(client, 'help', (message) => {
         message.channel.send(`
         Available Commands:
-        
-    **${prefix}help** - Displays the help menu
-    **${prefix}purge** - Clears all messages in a channel (only available to admins)
-    **${prefix}prefix** - Changes the bot prefix
-    **${prefix}serverinfo** - Displays info about the current server
-    **${prefix}version** - Shows the bot version number
-    *aliases: ${prefix}v*
+
+**${prefix}help** - Displays the help menu
+**${prefix}purge** - Clears all messages in a channel (only available to admins)
+**${prefix}prefix** - Changes the bot prefix
+**${prefix}serverinfo** - Displays info about the current server
+**${prefix}version** - Shows the bot version number
+*aliases: ${prefix}v*
         `)
     })
 
