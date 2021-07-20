@@ -6,7 +6,7 @@ const client = new Discord.Client()
 const config = require('./config.json')
 const { prefix, token } = require('./config.json')
 
-client.on('ready', () => {
+client.on('ready', async () => {
     console.log('The Client is Ready!')
 
     const baseFile = 'command-handeler.js'
