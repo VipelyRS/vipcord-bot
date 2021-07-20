@@ -1,3 +1,5 @@
+const path = require('path')
+const fs = require('fs')
 const Discord = require('discord.js')
 const client = new Discord.Client()
 
@@ -8,107 +10,23 @@ const command = require('./command')
 client.on('ready', () => {
     console.log('The Client is Ready!')
 
-    command(client, 'help', (message) => {
-        message.channel.send(`
-        Available Commands:
+    const baseFile = 'command-handeler.js'
+    const commandHandeler = require(`./commands/${baseFile}`)
 
-**${prefix}help** - Displays the help menu
-**${prefix}kick <user>** - Kicks a targeted user
-**${prefix}ban <user>** - Bans a targeted user
-**${prefix}purge** - Clears all messages in a channel
-**${prefix}prefix** - Changes the bot prefix
-**${prefix}servers** - Shows all the servers the bot is in
-**${prefix}serverinfo** - Displays info about the current server
-**${prefix}version** - Shows the bot version number
-*aliases: ${prefix}v*
-        `)
-    })
-
-    command(client, 'kick', message => {
-        const { member, mentions } = message
-
-        const tag = `<@${member.id}>`
-
-        if(member.hasPermission('KICK_MEMBERS') || member.hasPermission('ADMINISTRATOR')) {
-            const target = mentions.users.first()
-            if (target) {
-                const targetMember = message.guild.members.cache.get(target.id)
-                targetMember.kick()
-                message.channel.send(`${tag} That user has been kicked.`)
-            } else {
-                message.channel.send(`${tag} No vaild user mentioned.`)
+    const readCommands = dir => {
+        const files = fs.readdirSync(path.join(__dirname, dir))
+        for (const file of files) {
+            const stat = fs.lstatSync(path.join(__dirname, dir, file))
+            if (stat.isDirectory()) {
+                readCommands(path.join(dir, file))
+            } else if (file !== baseFile) {
+                const option = require(path.join(__dirname, dir, file))
+                commandHandeler()
             }
-
-        } else {
-            message.channel.send(`${tag} You do not have the required permission to use this command.`)
         }
-    })
+    }
 
-    command(client, 'ban', message => {
-        const { member, mentions } = message
-
-        const tag = `<@${member.id}>`
-
-        if(member.hasPermission('BAN_MEMBERS') || member.hasPermission('ADMINISTRATOR')) {
-            const target = mentions.users.first()
-            if (target) {
-                const targetMember = message.guild.members.cache.get(target.id)
-                targetMember.ban()
-                message.channel.send(`${tag} That user has been banned.`)
-            } else {
-                message.channel.send(`${tag} No vaild user mentioned.`)
-            }
-
-        } else {
-            message.channel.send(`${tag} You do not have the required permission to use this command.`)
-        }
-    })
-
-    command(client, 'purge', message => {
-        if (message.member.hasPermission('ADMINISTRATOR')) {
-            message.channel.messages.fetch().then((results) => {
-                message.channel.bulkDelete(results)
-            })
-        }
-    })
-
-    command(client, 'servers', message => {
-        client.guilds.cache.forEach((guilds) => {
-            message.channel.send(`${guild.name} has a total of ${guilds.memberCount} members`)
-        })
-    })
-
-
-    command(client, 'serverinfo', message => {
-        const { guild } = message
-
-        const { name, region, memberCount, owner } = guild
-        const icon = guild.iconURL()
-
-        const embed = new Discord.MessageEmbed()
-            .setTitle(`Server Info for "${name}"`)
-            .setThumbnail(icon)
-            .addFields(
-                {
-                    name: 'Owner',
-                    value: owner.user.tag,
-                },
-                {
-                    name: 'Region',
-                    value: region,
-                },
-                {
-                    name: 'Members',
-                    value: memberCount
-                }
-            )
-
-            message.channel.send(embed)
-    })
-
-    command(client, ['version', 'v'], (message) => {
-        message.channel.send(`**Bot Version Number**: Alpha 2.0.0`)
-    })
+    readCommands('commands')
 })
 
 client.login(process.env.DiscordJS_Token)
