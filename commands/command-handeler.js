@@ -87,7 +87,7 @@ module.exports.listen = (client) => {
         const name = arguments.shift().toLowerCase();
 
         if (name.startsWith(prefix)) {
-            const command = allCommands[name.replace(prifx, "")]
+            const command = allCommands[name.replace(prefix, "")]
             if (!command) {
                 return
             }
