@@ -52,11 +52,11 @@ module.exports = (client, commandOptions) => {
         commands,
         expectedArgs = '',
         permissionError = 'You do not have the required permissions to access this command',
-        minArgs = '0',
-        maxArgs = 'null',
+        minArgs = 0,
+        maxArgs = null,
         permissions = [],
         requiredRoles = [],
-        callback
+        callback,
     } = commandOptions
 
     if (typeof commands === 'string') {
