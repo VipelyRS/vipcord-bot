@@ -9,8 +9,8 @@ const { prefix, token } = require('./config.json')
 client.on('ready', async () => {
     console.log('The Client is Ready!')
 
-    const baseFile = 'command-handeler.js'
-    const commandHandeler = require(`./commands/${baseFile}`)
+    const baseFile = 'command-handler.js'
+    const commandHandler = require(`./commands/${baseFile}`)
 
     const readCommands = dir => {
         const files = fs.readdirSync(path.join(__dirname, dir))
@@ -20,14 +20,14 @@ client.on('ready', async () => {
                 readCommands(path.join(dir, file))
             } else if (file !== baseFile) {
                 const option = require(path.join(__dirname, dir, file))
-                commandHandeler(option)
+                commandHandler(option)
             }
         }
     }
 
     readCommands('commands')
 
-    commandHandeler.listen(client)
+    commandHandler.listen(client)
 })
 
 client.login(process.env.DiscordJS_Token)

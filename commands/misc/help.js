@@ -17,6 +17,7 @@ module.exports = {
 **${prefix}serverinfo** - Displays info about the current server
 **${prefix}version** - Shows the bot version number
 *aliases: ${prefix}v*
+**${prefix}sugondese** - Nuts
         `)
     },
 }
