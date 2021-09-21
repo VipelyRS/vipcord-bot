@@ -1,5 +1,7 @@
 const { prefix } = require('../../config.json')
-const { MessageEmbed, Channel } = require('discord.js')
+const { MessageEmbed, Channel, Intents } = require('discord.js')
+
+const client = new Client({ intents: [Intents.FLAGS.GUILDS] })
 
 module.exports = {
     commands: 'help',
