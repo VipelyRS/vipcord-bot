@@ -1,8 +1,7 @@
 const path = require('path')
 const fs = require('fs')
 const { Discord, Intents } = require('discord.js')
-const client = new Discord.Client()
-const client = new Client({ intents: [Intents.FLAGS.GUILDS] });
+const client = new Discord.Client({ intents: [Intents.FLAGS.GUILDS] });
 
 const config = require('./config.json')
 const { prefix, token } = require('./config.json')
