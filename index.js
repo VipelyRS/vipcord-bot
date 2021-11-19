@@ -6,7 +6,7 @@ const client = new Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_
 const config = require('./config.json')
 const { prefix, token } = require('./config.json')
 
-client.on('ready', () => {
+client.on('ready', async () => {
     console.log('The Client is Ready!')
 
     const baseFile = 'command-handler.js'
