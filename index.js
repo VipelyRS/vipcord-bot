@@ -1,6 +1,6 @@
 const path = require('path')
 const fs = require('fs')
-const { Client } = require("disocord.js")
+const { Client } = require("discord.js")
 const client = new Client(32767)
 
 const config = require('./config.json')
