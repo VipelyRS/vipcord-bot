@@ -1,12 +1,12 @@
 const path = require('path')
 const fs = require('fs')
 const { Client, Intents } = require('discord.js')
-const client = new Client({ intents: [Intents.FLAGS.GUILDS] });
+const client = new Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES] });
 
 const config = require('./config.json')
 const { prefix, token } = require('./config.json')
 
-client.on('ready', async () => {
+client.on('ready', () => {
     console.log('The Client is Ready!')
 
     const baseFile = 'command-handler.js'
