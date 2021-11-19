@@ -1,7 +1,7 @@
 const path = require('path')
 const fs = require('fs')
 const { Client } = require("discord.js")
-const client = new Client(32767)
+const client = new Client({intents: 32767})
 
 const config = require('./config.json')
 const { prefix, token } = require('./config.json')
