@@ -1,9 +1,7 @@
 const path = require('path')
 const fs = require('fs')
-let Discord = require("discord.js");
-
-const allIntents = Discord.Intents.all()
-const client = new Discord.Client({ intents: allIntents })
+const { Client } = require("disocord.js")
+const client = new Client(32767)
 
 const config = require('./config.json')
 const { prefix, token } = require('./config.json')
