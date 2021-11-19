@@ -1,5 +1,10 @@
 {
   "dependencies": {
     "discord.js": "^13.1.0"
-  }
+  },
+    "name": "vipcord-bot",
+    "description": "a really cool app",
+    "engines": {
+      "node": "16.9.1"
+    }
 }
